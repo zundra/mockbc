@@ -43,7 +43,7 @@ class MockBC {
 
     start() {
        this.stop()
-            this.intervalID = setInterval(this.setResult.bind(this), 1000);
+            this.intervalID = setInterval(this.setResult.bind(this), Number($("#poll-interval").val());
     }
 
     getClientSeed() {
