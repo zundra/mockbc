@@ -35,6 +35,7 @@ class MockBC {
   }
 
   incrementNonce() {
+    console.log("nonce = ", nonce)
     this.nonce++;
   }
 
