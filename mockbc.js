@@ -13,8 +13,6 @@ class MockBC {
       this.results.shift();
     }
 
-    console.log("setResult nonce = ", this.getNonce())
-
     this.results.push(
       this.gameResult(
         String(
@@ -39,7 +37,6 @@ class MockBC {
 
   incrementNonce() {
     this.nonce++;
-    console.log("nonce = ", this.nonce, this.getNonce())
   }
 
   stop() {
