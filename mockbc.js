@@ -90,16 +90,20 @@ class MockBC {
   }
 
   hmac_sha256(msg, salt) {
-    // Simulate HMAC-SHA256 without using libraries
-    function simpleHash(input) {
-      let hash = 2166136261; // FNV offset basis
-      for (let i = 0; i < input.length; i++) {
-        const char = input.charCodeAt(i);
-        hash ^= char;
-        hash = (hash * 16777619) & 0xffffffff; // FNV prime
-      }
-      return hash;
-    }
+    return CryptoJS.HmacSHA256(msg, salt);
+  }
+  
+  // hmac_sha256(msg, salt) {
+  //   // Simulate HMAC-SHA256 without using libraries
+  //   function simpleHash(input) {
+  //     let hash = 2166136261; // FNV offset basis
+  //     for (let i = 0; i < input.length; i++) {
+  //       const char = input.charCodeAt(i);
+  //       hash ^= char;
+  //       hash = (hash * 16777619) & 0xffffffff; // FNV prime
+  //     }
+  //     return hash;
+  //   }
 
     const combined = msg + salt;
     let hashValue = simpleHash(combined);
