@@ -5,6 +5,7 @@ class MockBC {
     this.intervalID = null;
     this.clientSeed = null;
     this.serverSeed = null;
+    this.nonce = 0;
   }
 
   setResult(results) {
