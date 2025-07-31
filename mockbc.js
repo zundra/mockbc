@@ -78,7 +78,11 @@ class MockBC {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
-  gameResult(hash_list) {
+  function hmac_sha256(msg, salt) {
+    return CryptoJS.HmacSHA256(msg, salt);
+  }
+
+  function gameResult(hash_list) {
     let seed = hash_list;
     const nBits = 52;
     seed = seed.slice(0, nBits / 4);
@@ -87,34 +91,6 @@ class MockBC {
     X = 99 / (1 - X);
     const result = Math.floor(X);
     return Math.max(1, result / 100);
-  }
-
-  hmac_sha256(msg, salt) {
-    return CryptoJS.HmacSHA256(msg, salt);
-  }
-  
-  // hmac_sha256(msg, salt) {
-  //   // Simulate HMAC-SHA256 without using libraries
-  //   function simpleHash(input) {
-  //     let hash = 2166136261; // FNV offset basis
-  //     for (let i = 0; i < input.length; i++) {
-  //       const char = input.charCodeAt(i);
-  //       hash ^= char;
-  //       hash = (hash * 16777619) & 0xffffffff; // FNV prime
-  //     }
-  //     return hash;
-  //   }
-
-    const combined = msg + salt;
-    let hashValue = simpleHash(combined);
-    hashValue ^= hashValue >>> 16; // Add additional scrambling for diversity
-    hashValue = Math.abs(hashValue).toString(16); // Convert to positive hex
-
-    // Add high-entropy prefix to avoid leading zeros
-    const randomPrefix = Math.floor(Math.random() * 0xffffff)
-      .toString(16)
-      .padStart(6, "0");
-    return randomPrefix + hashValue; // Prefix for better randomness
   }
 }
 
