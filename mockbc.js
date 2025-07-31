@@ -78,11 +78,11 @@ class MockBC {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
-  function hmac_sha256(msg, salt) {
+  hmac_sha256(msg, salt) {
     return CryptoJS.HmacSHA256(msg, salt);
   }
 
-  function gameResult(hash_list) {
+  gameResult(hash_list) {
     let seed = hash_list;
     const nBits = 52;
     seed = seed.slice(0, nBits / 4);
