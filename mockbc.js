@@ -56,11 +56,11 @@ class MockBC {
   }
 
   getClientSeed() {
-    return "bb6be8686341274e68915c96f01a4f3294a4155c4b1cdfaf14d86b84a976d55";
+    return "abcdef8686341274e68915c96f01a4f3294a4155c4b1cdfaf14d86b84a976d55";
   }
 
   getServerSeed() {
-    return "aaa6be8686341274e68915c96f01a4f3294a4155c4b1cdfaf14d86b84a976d55";
+    return "zyxwvuts686341274e68915c96f01a4f3294a4155c4b1cdfaf14d86b84a976d55";
   }
 
   getNonce() {
