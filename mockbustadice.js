@@ -89,7 +89,7 @@ class MockBC {
     seed = seed.slice(0, nBits / 4);
     const r = parseInt(seed, 16);
     let X = r / Math.pow(2, nBits);
-    X = 96 / (1 - X);
+    X = 99 / (1 - X);
     const result = Math.floor(X);
     return Math.max(1, result / 100);
   }
