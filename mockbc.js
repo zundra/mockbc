@@ -1,11 +1,33 @@
 /* Mock BC */
 class MockBC {
-  constructor() {
+  constructor(nonce, clientSeed, serverSeed) {
     this.results = [];
     this.intervalID = null;
-    this.clientSeed = null;
-    this.serverSeed = null;
-    this.nonce = 23228;
+    this.clientSeed = clientSeed;
+    this.serverSeed = serverSeed;
+    this.nonce = nonce;
+  }
+
+  getClientSeed = () => this.clientSeed;
+
+  getServerSeed = () => this.serverSeed;
+
+  getNonce = () => this.nonce;
+
+  setClientSeed() {
+    this.clientSeed = clientSeed;
+  }
+
+  setServerSeed(serverSeed) {
+    this.serverSeed = serverSeed;
+  }
+
+  setNonce() {
+    this.nonce = nonce;
+  }
+
+  getIntervalID() {
+    return this.intervalID;
   }
 
   setResult(results) {
@@ -34,6 +56,9 @@ class MockBC {
 
     this.incrementNonce();
   }
+  getResults() {
+    return this.results;
+  }
 
   incrementNonce() {
     this.nonce++;
@@ -53,34 +78,6 @@ class MockBC {
       this.setResult.bind(this),
       Number($("#poll-interval").val())
     );
-  }
-
-/* 
-Nonce 23228 (2.1x, 6.32x, 1.49x, 2.55x, 1.02x, 2.75x, 1.21x, 1.03x)
-Client Seed: Y83TpC2hj2SnjiNEDJwN
-Server Seed: 9b98254e8986dd95349fc754b4b087b5d0ddf9771026d68fe4ed661c869420b4
-Server Seed Hash: d7e30e322c0ec13033dd8b598a9261f7aa91b008ea9596c45a2f50f179b1a98a
-
-
-*/
-  getClientSeed() {
-    return "Y83TpC2hj2SnjiNEDJwN";
-  }
-
-  getServerSeed() {
-    return "9b98254e8986dd95349fc754b4b087b5d0ddf9771026d68fe4ed661c869420b4";
-  }
-
-  getNonce() {
-    return this.nonce;
-  }
-
-  getIntervalID() {
-    return this.intervalID;
-  }
-
-  getResults() {
-    return this.results;
   }
 
   sleep(ms) {
@@ -103,4 +100,3 @@ Server Seed Hash: d7e30e322c0ec13033dd8b598a9261f7aa91b008ea9596c45a2f50f179b1a9
   }
 }
 
-const mbc = new MockBC();
