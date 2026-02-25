@@ -28,7 +28,7 @@ registerTest("permission_structure", (() => {
     let redCount = 0;
     let depths = [];
 
-    for (const payout of TARGETS) {
+    for (const payout of targets) {
       const row = targets?.get?.(payout) ?? targets?.[payout] ?? null; // adapt
       const ratio = getRowShortRatio(row);
       if (ratio == null) continue;
