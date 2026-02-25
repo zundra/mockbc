@@ -1,7 +1,5 @@
 let observer = null
 
-alert("TEST");
-
 function getRollResult() {
   const temp = lastRollSet
   lastRollSet = currentRollSet
