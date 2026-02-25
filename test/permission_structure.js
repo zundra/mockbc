@@ -13,7 +13,7 @@ registerTest("permission_structure", (() => {
     // Expectation: targetRow has .wrShort and .teo (or equivalents).
     if (!targetRow) return null;
 
-    const wrS = targetRow.getWinRate(targetRow.shortWindow);
+    const wrS = targetRow.stats.getWinRate(targetRow.shortWindow);
     const teo = targetRow.getTeo();
 
     if (wrS == null || teo == null || teo <= 0) return null;
