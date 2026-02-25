@@ -13,8 +13,8 @@ registerTest("permission_structure", (() => {
     // Expectation: targetRow has .wrShort and .teo (or equivalents).
     if (!targetRow) return null;
 
-    const wrS = targetRow.wrShort ?? targetRow.wrS ?? targetRow.shortWR ?? null;
-    const teo = targetRow.teo ?? targetRow.TEO ?? null;
+    const wrS = targetRow.getWinRate(targetRow.shortWindow);
+    const teo = targetRow.getTeo();
 
     if (wrS == null || teo == null || teo <= 0) return null;
     return wrS / teo;
@@ -28,8 +28,7 @@ registerTest("permission_structure", (() => {
     let redCount = 0;
     let depths = [];
 
-    for (const target of targets) {
-      const row = target.getPayout();
+    for (const row of targets) {
       const ratio = getRowShortRatio(row);
       if (ratio == null) continue;
 
