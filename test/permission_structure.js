@@ -6,14 +6,7 @@ registerTest("permission_structure", (() => {
   let wasOn = false;
   const pending = [];           // { entryRoll, snapshots: [] }
   
-  const PERM_SUMMARY = {
-    totalEvents: 0,
-    totalWr2: 0,
-    totalHits2: 0,
-    totalRollsObserved: 0,
-    positiveWindows: 0
-  };
-
+  const PERM_HISTORY = [];
   const BASELINE_P2 = 1 / (2 * 1.01);
 
   console.log("Successfully registered permission structure test");
@@ -73,25 +66,29 @@ registerTest("permission_structure", (() => {
         const hits2 = ev.results.filter(x => x >= 2).length;
         const wr2 = hits2 / K;
 
-        // ---- accumulate ----
-        PERM_SUMMARY.totalEvents++;
-        PERM_SUMMARY.totalWr2 += wr2;
-        PERM_SUMMARY.totalHits2 += hits2;
-        PERM_SUMMARY.totalRollsObserved += K;
+        PERM_HISTORY.push({
+          event: PERM_HISTORY.length + 1,
+          entryRoll: ev.entryRoll,
+          wr2: Number(wr2.toFixed(3)),
+          baseline: Number(BASELINE_P2.toFixed(3)),
+          redCount: ev.redCount,
+          avgDepth: Number(ev.avgDepth.toFixed(3))
+        });
 
-        if (wr2 > BASELINE_P2) {
-          PERM_SUMMARY.positiveWindows++;
-        }
+        // compute running aggregates
+        const avgWr2 = PERM_HISTORY.reduce((s,e)=>s+e.wr2,0) / PERM_HISTORY.length;
+        const positiveRate =
+          PERM_HISTORY.filter(e => e.wr2 > BASELINE_P2).length /
+          PERM_HISTORY.length;
 
-        const avgWr2 = PERM_SUMMARY.totalWr2 / PERM_SUMMARY.totalEvents;
-        const positiveRate = PERM_SUMMARY.positiveWindows / PERM_SUMMARY.totalEvents;
+        // attach aggregates to last row only (clean display)
+        PERM_HISTORY[PERM_HISTORY.length - 1].avgWr2 =
+          Number(avgWr2.toFixed(3));
+        PERM_HISTORY[PERM_HISTORY.length - 1].positiveRate =
+          Number((positiveRate * 100).toFixed(1));
 
-        console.log(
-          `[PERM EVENT ${PERM_SUMMARY.totalEvents}] wr2=${wr2.toFixed(3)} | ` +
-          `avgWr2=${avgWr2.toFixed(3)} | ` +
-          `positiveRate=${(positiveRate*100).toFixed(1)}% | ` +
-          `baseline=${BASELINE_P2.toFixed(3)}`
-        );
+        console.clear();
+        console.table(PERM_HISTORY);
 
         pending.splice(i, 1);
       }
