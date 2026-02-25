@@ -1,12 +1,12 @@
 registerTest("permission_structure", (() => {
-  const TARGETS = [1.5, 2, 3, 5, 10, 20, 50, 100];
-
   const K = 20;                 // horizon to observe
   const RED_RATIO = 0.90;       // WR_S/TEO below this counts as "red"
   const MIN_RED = 5;            // how many reds required
 
   let wasOn = false;
   const pending = [];           // { entryRoll, snapshots: [] }
+  
+  console.log("Successfully registered permission structure test");
 
   function getRowShortRatio(targetRow) {
     // You need to adapt this accessor to your TARGETS structure.
@@ -72,6 +72,4 @@ registerTest("permission_structure", (() => {
       }
     }
   };
-
-  console.log("Successfully registered permission structure test");
 })());
