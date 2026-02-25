@@ -1,6 +1,6 @@
 registerTest("permission_structure", (() => {
   const K = 1000;                 // horizon to observe
-  const RED_RATIO = 0.90;       // WR_S/TEO below this counts as "red"
+  const RED_RATIO = 0.50;       // WR_S/TEO below this counts as "red"
   const MIN_RED = 5;            // how many reds required
 
   let wasOn = false;
