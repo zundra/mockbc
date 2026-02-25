@@ -2,6 +2,14 @@ let observer = null
 let lastRollSet = [];
 let currentRollSet = [];
 
+function getCurrentRollData() {
+  return $(".grid.grid-auto-flow-column div span")
+    .map(function () {
+      return $(this).text();
+    })
+    .get();
+}
+
 function getRollResult() {
   const temp = lastRollSet
   lastRollSet = currentRollSet
