@@ -1,4 +1,6 @@
 let observer = null
+let lastRollSet = [];
+let currentRollSet = [];
 
 function getRollResult() {
   const temp = lastRollSet
