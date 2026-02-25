@@ -32,7 +32,7 @@ function getRollResult() {
 // Observer for Bustadice "My Bets" table
 
 
-async function observeRollChanges() {
+async function observeRollChanges(onRoll) {
   const gridElement = await waitForSelector(".grid.grid-auto-flow-column")
   let previousRollData = getCurrentRollData()
 
@@ -55,7 +55,7 @@ async function observeRollChanges() {
     }
 
     if (rollDataChanged) {
-      evalResult(getRollResult())
+      onRoll(getRollResult())
     }
   })
 

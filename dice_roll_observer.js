@@ -1,5 +1,5 @@
 // Utility function: Extract the last roll result
-async function observeRollChanges() {
+async function observeRollChanges(onRoll) {
     (function () {
         const origFetch = window.fetch;
 
@@ -32,7 +32,7 @@ async function observeRollChanges() {
                               data?.crashBet?.state?.result;
 
                         if (Number.isFinite(result)) {
-                            evalResult(parseFloat(result.toFixed(2)));
+                            onRoll(parseFloat(result.toFixed(2)));
                         }
                     });
                 } catch {}
