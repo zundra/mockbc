@@ -1,5 +1,5 @@
 registerTest("permission_structure", (() => {
-  const K = 20;                 // horizon to observe
+  const K = 1000;                 // horizon to observe
   const RED_RATIO = 0.90;       // WR_S/TEO below this counts as "red"
   const MIN_RED = 5;            // how many reds required
 
@@ -69,12 +69,28 @@ registerTest("permission_structure", (() => {
       }
 
       if (age === K) {
-        // summarize: how many >=2 hits in next K rolls (you can expand later)
+
         const hits2 = ev.results.filter(x => x >= 2).length;
         const wr2 = hits2 / K;
 
+        // ---- accumulate ----
+        PERM_SUMMARY.totalEvents++;
+        PERM_SUMMARY.totalWr2 += wr2;
+        PERM_SUMMARY.totalHits2 += hits2;
+        PERM_SUMMARY.totalRollsObserved += K;
+
+        if (wr2 > BASELINE_P2) {
+          PERM_SUMMARY.positiveWindows++;
+        }
+
+        const avgWr2 = PERM_SUMMARY.totalWr2 / PERM_SUMMARY.totalEvents;
+        const positiveRate = PERM_SUMMARY.positiveWindows / PERM_SUMMARY.totalEvents;
+
         console.log(
-          `[PERM K=${K}] entry=${ev.entryRoll} wr2=${wr2.toFixed(3)} (hits=${hits2}/${K}) redCount=${ev.redCount} avgDepth=${ev.avgDepth.toFixed(3)}`
+          `[PERM EVENT ${PERM_SUMMARY.totalEvents}] wr2=${wr2.toFixed(3)} | ` +
+          `avgWr2=${avgWr2.toFixed(3)} | ` +
+          `positiveRate=${(positiveRate*100).toFixed(1)}% | ` +
+          `baseline=${BASELINE_P2.toFixed(3)}`
         );
 
         pending.splice(i, 1);
