@@ -6,6 +6,16 @@ registerTest("permission_structure", (() => {
   let wasOn = false;
   const pending = [];           // { entryRoll, snapshots: [] }
   
+  const PERM_SUMMARY = {
+    totalEvents: 0,
+    totalWr2: 0,
+    totalHits2: 0,
+    totalRollsObserved: 0,
+    positiveWindows: 0
+  };
+
+  const BASELINE_P2 = 1 / (2 * 1.01);
+
   console.log("Successfully registered permission structure test");
 
   function getRowShortRatio(targetRow) {
