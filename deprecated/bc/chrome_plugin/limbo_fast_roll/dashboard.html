@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Crash Control Dashboard</title>
+  <style>
+    body {
+      background: #1e1e1e;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      margin: 0;
+      padding: 10px;
+      width: 400px;
+      height: 600px;
+      overflow-y: auto;
+    }
+    h3 {
+      text-align: center;
+    }
+    .message-box, .stats-box, .control-group, .button-group {
+      margin-bottom: 12px;
+      background-color: #2a2a2a;
+      padding: 10px;
+      border-radius: 6px;
+    }
+    .control-group {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .control-group label {
+      flex: 1;
+      padding-right: 10px;
+    }
+    .control-group input, .control-group select {
+      flex: 1;
+      background: #444;
+      color: white;
+      border: none;
+      padding: 5px;
+      border-radius: 4px;
+    }
+    .button-group button {
+      width: 48%;
+      background: #2d89ef;
+      color: white;
+      border: none;
+      padding: 8px;
+      border-radius: 6px;
+      margin: 2px 1%;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .button-group button:hover {
+      background: #1c6ac9;
+    }
+  </style>
+</head>
+<body>
+
+  <h3>⚙️ Crash Watcher Control Panel</h3>
+
+  <div class="message-box" id="message">Status: Idle</div>
+
+  <div class="stats-box" id="stats">
+    <div>Profit / Loss: <span id="profit-loss"></span></div>
+    <div>Roll Count: <span id="roll-count"></span></div>
+    <div>Hit Count: <span id="hit-count"></span></div>
+    <div>High Hit: <span id="high-hit"></span></div>
+    <div>Win Rate: <span id="win-rate"></span></div>
+  </div>
+
+  <div class="button-group">
+    <button id="start-betting-btn">Start Betting</button>
+    <button id="stop-betting-btn">Stop Betting</button>
+    <button id="set-risk-on-btn">Risk On</button>
+    <button id="set-risk-off-btn">Risk Off</button>
+    <button id="zero-wager-btn">Zero Wager</button>
+    <button id="double-wager-btn">Double Wager</button>
+    <button id="half-wager-btn">Half Wager</button>
+  </div>
+
+  <div class="control-group">
+    <label>Risk On</label>
+    <input type="checkbox" id="risk-on" />
+  </div>
+
+  <div class="control-group">
+    <label>Losing Streak Multiplier</label>
+    <select id="ls-multiplier">
+      ${[...Array(21).keys()].map(i => `<option value="${(i * 0.5).toFixed(1)}">${(i * 0.5).toFixed(1)}</option>`).join("")}
+    </select>
+  </div>
+
+  <div class="control-group">
+    <label>Play Alert</label>
+    <input type="checkbox" id="play-alert" checked />
+  </div>
+
+  <div class="control-group">
+    <label>Alert Threshold</label>
+    <input type="number" id="high-hit-alert-threshold" value="10000" />
+  </div>
+
+  <div class="control-group">
+    <label>Roll Announcement Mod</label>
+    <input type="number" id="roll-announcement-mod" value="1000" />
+  </div>
+
+  <div class="control-group">
+    <label>Reset On Start</label>
+    <input type="checkbox" id="reset-on-start" />
+  </div>
+
+  <div class="control-group">
+    <label>Reset High Hit on Big Hit</label>
+    <input type="checkbox" id="reset-high-hit-on-big-hit" checked />
+  </div>
+
+  <div class="control-group">
+    <label>Use Progressive Wager</label>
+    <input type="checkbox" id="use-progressive-wager" />
+  </div>
+
+  <div class="control-group">
+    <label>Max Loss</label>
+    <input type="number" id="max-loss" value="1" />
+  </div>
+
+  <div class="control-group">
+    <label>High Hit Reset Threshold</label>
+    <input type="number" id="high-hit-reset-threshold" value="100" />
+  </div>
+
+  <div class="control-group">
+    <label>Hit Count Target</label>
+    <input type="number" id="hit-count-target" value="0" />
+  </div>
+
+  <div class="control-group">
+    <label>Profit Target</label>
+    <input type="number" id="profit-target" value="0" />
+  </div>
+
+  <div class="control-group">
+    <label>Watch Payout 1</label>
+    <input type="number" id="watch-payout-1" value="2" />
+  </div>
+
+  <div class="control-group">
+    <label>Watch Payout 2</label>
+    <input type="number" id="watch-payout-2" value="10" />
+  </div>
+
+  <div class="control-group">
+    <label>Watch Payout 3</label>
+    <input type="number" id="watch-payout-3" value="20" />
+  </div>
+
+  <div class="control-group">
+    <label>Watch Payout 4</label>
+    <input type="number" id="watch-payout-4" value="50" />
+  </div>
+
+  <div class="control-group">
+    <label>Watch Payout 5</label>
+    <input type="number" id="watch-payout-5" value="100" />
+  </div>
+
+  <script src="jquery-3.7.1.min.js"></script>
+  <script src="dashboard.js"></script>
+</body>
+</html>

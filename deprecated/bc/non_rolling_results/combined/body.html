@@ -1,0 +1,70 @@
+<div id="stats-panel" style="
+   position: fixed;
+   top: 300px;
+   left: 100px;
+   z-index: 9999;
+   background: #1e1e1e;
+   color: #fff;
+   padding: 16px;
+   width: 400px;
+   border-radius: 10px;
+   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+   font-family: Arial, sans-serif;
+   font-size: 14px;
+   line-height: 1.6;
+   cursor: grab;
+   ">
+   <div id="stats-panel-header" style="
+      background: #333;
+      padding: 10px;
+      font-weight: bold;
+      text-align: center;
+      border-radius: 8px 8px 0 0;
+      cursor: grab;
+      ">⚙️ Control Panel</div>
+   <div id="message" class="message-box" style="
+      margin: 12px 0;
+      background-color: #444;
+      padding: 10px;
+      border-radius: 6px;
+      color: white;
+      font-size: 0.9rem;
+      text-align: center;
+      "></div>
+   <div id="stats" class="stats-box" style="
+      margin: 12px 0;
+      background-color: #444;
+      padding: 10px;
+      border-radius: 6px;
+      color: white;
+      font-size: 0.9rem;
+      text-align: center;
+      ">
+      <div>Profit / Loss: <span id="profit-loss"></span></div>
+      <div>Roll Count: <span id="roll-count"></span></div>
+      <div>Hit Count: <span id="hit-count"></span></div>
+      <div>High Hit: <span id="high-hit"></span></div>
+      <div>Win Rate: <span id="win-rate"></span></div>
+      <div style="background-color: #1e1e1e; border: 1px solid #333; border-radius: 6px; padding: 10px; margin-top: 10px; color: #ccc; font-family: sans-serif; font-size: 15px; overflow-x: auto;">
+         <table style="width: 100%; border-collapse: collapse;" id="watch-target-table">
+            <thead>
+               <tr>
+                  <th style="position: sticky; left: 0; background-color: #1e1e1e; z-index: 1; text-align: left; padding: 6px; white-space: nowrap;">
+                     Payout
+                  </th>
+                  <th style="position: sticky; left: 0; background-color: #1e1e1e; z-index: 1; text-align: left; padding: 6px; white-space: nowrap;">
+                     Streak
+                  </th>
+                  <th style="position: sticky; left: 0; background-color: #1e1e1e; z-index: 1; text-align: left; padding: 6px; white-space: nowrap;">
+                     Ratio
+                  </th>
+                  <th style="position: sticky; left: 0; background-color: #1e1e1e; z-index: 1; text-align: left; padding: 6px; white-space: nowrap;">
+                     Diff
+                  </th>
+               </tr>
+            </thead>
+            <tbody></tbody>
+         </table>
+      </div>
+   </div>
+</div>

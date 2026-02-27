@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "BCGame Crash Watcher",
+  "version": "1.0",
+  "description": "Track crash rolls and automate BC.Game Limbo",
+  "icons": {
+      "48": "icons/icon48.png"
+  },
+  "permissions": ["tabs"],
+  "host_permissions": ["https://*.game/*"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icons/icon48.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.game/*"],
+      "js": ["jquery-3.7.1.min.js", "content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["dashboard.html", "dashboard.js", "dashboard.css"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

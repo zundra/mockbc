@@ -1,0 +1,6 @@
+
+Roll Count: 10000
+Profit / Loss: -1.6100
+Losing Streak: 166
+High Hit: 17059.78 || Delta: 2508
+Total Ratio: 72.081
